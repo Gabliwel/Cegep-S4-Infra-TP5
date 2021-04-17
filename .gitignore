@@ -1,0 +1,5 @@
+*.coverage
+*.swp
+ __pycache__/
+*.py[cod]
+*.save
