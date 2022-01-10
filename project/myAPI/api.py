@@ -2,6 +2,7 @@ from flask import *
 from myCode.customExceptions import *
 from myCode import db
 from myCode import version
+import json
 
 app = Flask('DB user management program')
 
@@ -18,7 +19,7 @@ def getUsers():
 
 @app.route('/getusers')
 def route_getUsers(): #pragma: no cover
-	return jsonify({'code':'2000', 'msg': getUsers()})
+	return json.dumps({'code':'2000', 'msg': getUsers()})
 
 def delUser(username):
 	if username in db.getInitialUsersFromDB():
@@ -33,13 +34,13 @@ def route_delUser(): #pragma: no cover
 		username = request.args['username']
 		try:
 			rep = delUser(username)
-			return jsonify({'code':'2000', 'msg':rep})
+			return json.dumps({'code':'2000', 'msg':rep})
 		except InitialUserException as iue:
-			return make_response(jsonify({'code':'1003', 'msg':str(iue)}), 400)
+			return make_response(json.dumps({'code':'1003', 'msg':str(iue)}), 400)
 		except NonExistingUserException as neue:
-			return make_response(jsonify({'code':'1002', 'msg':str(neue)}), 400)
+			return make_response(json.dumps({'code':'1002', 'msg':str(neue)}), 400)
 	else:
-		return make_response(jsonify({'code':'1000', 'msg':'param username is mandatory for deletion.'}), 400)
+		return make_response(json.dumps({'code':'1000', 'msg':'param username is mandatory for deletion.'}), 400)
 
 
 def addUser(username):
@@ -55,11 +56,11 @@ def route_addUser(): #pragma: no cover
 		username = request.args['username']
 		try:
 			rep = addUser(username)
-			return jsonify({'code':'2000', 'msg':rep})
+			return json.dumps({'code':'2000', 'msg':rep})
 		except UserAlreadyExistsException as uaee:
-			return make_response(jsonify({'code':'1001', 'msg':str(uaee)}), 400)
+			return make_response(json.dumps({'code':'1001', 'msg':str(uaee)}), 400)
 	else:
-		return make_response(jsonify({'code':'1000', 'msg':'param username is mandatory for user creation.'}), 400)
+		return make_response(json.dumps({'code':'1000', 'msg':'param username is mandatory for user creation.'}), 400)
 
 if __name__ == '__main__': #pragma: no cover
 	app.run(debug=True, host='0.0.0.0', port = 5555)
