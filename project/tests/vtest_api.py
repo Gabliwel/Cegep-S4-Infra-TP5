@@ -2,7 +2,7 @@ import unittest
 import requests
 import json
 
-IP = "ChangeThisToYourProdURL"
+IP = "change.this.to.your.prod.url"
 PORT = "5555"
 URL = "http://" + IP + ":" + PORT
 
