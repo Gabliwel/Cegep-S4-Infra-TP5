@@ -1,0 +1,4 @@
+FROM mysql:5.7
+WORKDIR /mnt/app/
+#RUN --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+CMD ["./project/scripts/db/init.sql"]
