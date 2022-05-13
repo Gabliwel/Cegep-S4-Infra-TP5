@@ -9,11 +9,9 @@ services:
     volumes:
       - ./:/mnt/app
     ports:
-      - 5556:5556
+      - 3306:3306
 
   api:
-    environment:
-      - INFRA_TP5_DB_TYPE=MYSQL
     build: 
       context: ./
       dockerfile: ./project/docker/DockerfileAPI
@@ -22,5 +20,13 @@ services:
       - ./:/mnt/app
     ports:
       - 5555:5555
+    links:
+      - bd
     depends_on:
       - bd
+    environment:
+      - INFRA_TP5_DB_TYPE=MYSQL
+      - INFRA_TP5_DB_USER=root
+      - INFRA_TP5_DB_PASSWORD=password
+      - INFRA_TP5_DB_HOST=bd
+      - INFRA_TP5_DB_PORT=3306

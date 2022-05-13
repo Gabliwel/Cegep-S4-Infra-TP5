@@ -1,4 +1,5 @@
 FROM mysql:5.7
-WORKDIR /mnt/app/
-#RUN --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
-CMD ["./project/scripts/db/init.sql"]
+
+ENV MYSQL_ROOT_PASSWORD=password
+
+ADD ./project/scripts/db/init.sql /docker-entrypoint-initdb.d
