@@ -16,6 +16,6 @@ dtests:
   stage: test
   script:
     - pip3 install -r requirements.txt
-    - ./run.sh ./project/myAPI/api.py &
     - ./run.sh ./project/myCode/SQLiteDB.py &
+    - ./run.sh ./project/myAPI/api.py &
     - python3 -m unittest discover -s project -v -p dtest_*.py
