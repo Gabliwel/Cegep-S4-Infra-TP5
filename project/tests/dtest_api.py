@@ -2,7 +2,7 @@ import unittest
 import requests
 import json
 
-IP = "34.130.112.176"
+IP = "0.0.0.0"
 PORT = "5555"
 URL = "http://" + IP + ":" + PORT
 
