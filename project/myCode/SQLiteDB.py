@@ -27,7 +27,7 @@ class SQLiteDB():
             self.runUpdateQuery(query)
             query = "INSERT INTO users (username, isInitialUser) VALUES (\"Joe\", 0);"
             self.runUpdateQuery(query)
-            query = "INSERT INTO users (username) VALUES (\"Jack\");"
+            query = "INSERT INTO users (username, isInitialUser) VALUES (\"Jack\", 0);"
             self.runUpdateQuery(query)
 
     def getUsersOfType(self, type):
