@@ -1,6 +1,7 @@
 import unittest
 import requests
 import json
+from myAPI import api
 
 IP = "0.0.0.0"
 PORT = "5555"
