@@ -12,7 +12,7 @@ class APIDeployTest(unittest.TestCase):
 		response = requests.get(URL + "/")
 		self.assertEqual(200, response.status_code)
 
-	def test_aaagetUsers(self):
+	def test_getUsers(self):
 		response = requests.get(URL + "/getusers")
 		self.assertEqual(200, response.status_code)
 		map = json.loads(response.content.decode('utf-8'))
