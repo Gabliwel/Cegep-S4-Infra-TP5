@@ -1,18 +1,20 @@
 image: demers/python420w4a
 
-variables:
-  - INFRA_TP5_DB_TYPE: "SQLite"
 stages:
   - test
 
 utests:
   stage: test
+  variables:
+  - INFRA_TP5_DB_TYPE: "SQLite"
   script:
     - pip3 install -r requirements.txt
     - coverage run --omit */*test_*,*myoswrap.py,*customExceptions.py,*__init__.py,/usr/*,/home/lubuntu/.local/* -m unittest discover -s ./project -v
 
 dtests:
   stage: test
+  variables:
+  - INFRA_TP5_DB_TYPE: "SQLite"
   script:
     - pip3 install -r requirements.txt
     - ./run.sh ./project/myAPI/api.py &
