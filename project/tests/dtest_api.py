@@ -18,8 +18,11 @@ class APIDeployTest(unittest.TestCase):
 		self.assertEqual(200, response.status_code)
 		map = json.loads(response.content.decode('utf-8'))
 		map = map['msg']
+		print("----------Map----------")
 		print(map)
+		print("----------expected----------")
 		expected =  {"InitialUsers": ["Bob", "Body"], "NewUsers": ["Bill", "Jack", "Joe"]}
+		print(expected)
 		self.assertCountEqual(expected, map)
 		self.assertCountEqual(expected['InitialUsers'], map['InitialUsers'])
 		self.assertCountEqual(expected['NewUsers'], map['NewUsers'])
