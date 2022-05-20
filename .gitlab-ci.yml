@@ -1,24 +1,19 @@
 image: demers/python420w4a
 
 variables:
-  GIT_CURL_VERBOSE: 1
-  GIT_TRACE: 1
+  INFRA_TP5_DB_TYPE: "SQLite"
 
 stages:
   - test
 
 utests:
   stage: test
-  variables:
-    INFRA_TP5_DB_TYPE: "SQLite"
   script:
     - pip3 install -r requirements.txt
     - python3 -m unittest discover -s project -v -p test_*.py
 
 dtests:
   stage: test
-  variables:
-    INFRA_TP5_DB_TYPE: "SQLite"
   script:
     - pip3 install -r requirements.txt
     - ./run.sh ./project/myAPI/api.py &
