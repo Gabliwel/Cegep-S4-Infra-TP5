@@ -2,7 +2,7 @@ import unittest
 import requests
 import json
 
-IP = "change.this.to.your.prod.url"
+IP = "tp5-infra-zggb.ddnsgeek.com"
 PORT = "5555"
 URL = "http://" + IP + ":" + PORT
 

@@ -5,6 +5,7 @@ variables:
 
 stages:
   - test
+  - validate
 
 utests:
   stage: test
@@ -19,3 +20,12 @@ dtests:
     - ./run.sh ./project/myCode/SQLiteDB.py &
     - ./run.sh ./project/myAPI/api.py &
     - python3 -m unittest discover -s project -v -p dtest_*.py
+
+validate:
+  stage: validate
+  script:
+    - pip3 install -r requirements.txt
+    - python3 -m unittest discover -s project -v -p vtest_*.py
+  only:
+    refs:
+      - master
