@@ -1,6 +1,7 @@
 import unittest
 import requests
 import json
+from myAPI import api
 
 IP = "0.0.0.0"
 PORT = "5555"
@@ -11,17 +12,6 @@ class APIDeployTest(unittest.TestCase):
 	def test_home(self):
 		response = requests.get(URL + "/")
 		self.assertEqual(200, response.status_code)
-
-	def test_aaagetUsers(self):
-		response = requests.get(URL + "/getusers")
-		self.assertEqual(200, response.status_code)
-		map = json.loads(response.content.decode('utf-8'))
-		map = map['msg']
-		
-		expected =  {"InitialUsers": ["Bob", "Body"], "NewUsers": ["Bill", "Jack", "Joe"]}
-		self.assertCountEqual(expected, map)
-		self.assertCountEqual(expected['InitialUsers'], map['InitialUsers'])
-		self.assertCountEqual(expected['NewUsers'], map['NewUsers'])
 
 	def test_delUserFail1(self):
 		response = requests.get(URL + "/deluser?username=Bob")
@@ -59,6 +49,20 @@ class APIDeployTest(unittest.TestCase):
 		map = json.loads(response.content.decode('utf-8'))
 		map = map['msg']
 		self.assertIn('Tom', map['NewUsers'])
+
+	def test_getUsers(self):
+		response = requests.get(URL + "/getusers")
+		self.assertEqual(200, response.status_code)
+		map = json.loads(response.content.decode('utf-8'))
+		map = map['msg']
+		print("----------Map----------")
+		print(map)
+		print("----------expected----------")
+		expected =  {"InitialUsers": ["Bob", "Body"], "NewUsers": ["Bill", "Jack", "Tom"]}
+		print(expected)
+		self.assertCountEqual(expected, map)
+		self.assertCountEqual(expected['InitialUsers'], map['InitialUsers'])
+		self.assertCountEqual(expected['NewUsers'], map['NewUsers'])
 		
 if __name__ == "__main__":
 	unittest.main()
