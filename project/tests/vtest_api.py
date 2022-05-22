@@ -20,8 +20,14 @@ class APIDeployTest(unittest.TestCase):
 		
 		self.assertIn("InitialUsers", map)
 		self.assertIn("NewUsers", map)
+
+		print(map)
+
 		#marche pas
 		#self.assertIn("IsaacN", map["NewUsers"])
-		self.assertIn("AlbertE", map["InitialUsers"])
+		#self.assertIn("AlbertE", map["InitialUsers"])
+
+		#ajout eleve qui marche
+		self.assertIn("AlanT", map["InitialUsers"])
 if __name__ == "__main__":
 	unittest.main()
