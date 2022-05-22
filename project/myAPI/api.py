@@ -7,7 +7,7 @@ import json
 app = Flask('DB user management program')
 
 def hello():
-	return 'Ça marche!?! Welcome back to mega hot user program, V2.' +  version.getVersion()
+	return 'Ça marche?!?! Welcome back to mega hot user program, V2.' +  version.getVersion()
 
 @app.route('/')
 def welcome(): #pragma: no cover
