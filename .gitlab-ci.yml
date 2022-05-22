@@ -6,6 +6,7 @@ variables:
 stages:
   - test
   - validate
+  - deploy
 
 utests:
   stage: test
@@ -29,3 +30,19 @@ validate:
   only:
     refs:
       - master
+
+deploy-prod:
+  stage: deploy 
+  script:
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY_VM_CLOUD")
+    - ssh-add <(echo "$SSH_PRIVATE_KEY_GIT_VMCLOUD")
+    - mkdir -p ~/.ssh/
+    - echo -e "Host $VM_CLOUD_IP \n\tFowardAgent yes" > ~/.ssh/config
+    - more ~/.ssh/config
+    - ssh -o StrictHostKeyChecking=no $VM_CLOUD_USERNAME@$VM_CLOUD_IP "cd ~/exDeploiementCloud/ &&
+    - git fetch origin master && git reset --hard origin/master && exit"
+  only:
+    refs:
+      - master
+
