@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  bd:
+    build: 
+      context: ./
+      dockerfile: ./project/docker/DockerfileDB
+    image: img_bd
+    volumes:
+      - ./:/mnt/app
+    ports:
+      - 3306:3306
+
+  api:
+    build: 
+      context: ./
+      dockerfile: ./project/docker/DockerfileAPI
+    image: img_api
+    volumes:
+      - ./:/mnt/app
+    ports:
+      - 5555:5555
+    links:
+      - bd
+    depends_on:
+      - bd
+    environment:
+      - INFRA_TP5_DB_TYPE=MYSQL
+      - INFRA_TP5_DB_USER=root
+      - INFRA_TP5_DB_PASSWORD=password
+      - INFRA_TP5_DB_HOST=bd
+      - INFRA_TP5_DB_PORT=3306
