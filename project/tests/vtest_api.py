@@ -20,7 +20,7 @@ class APIDeployTest(unittest.TestCase):
 		
 		self.assertIn("InitialUsers", map)
 		self.assertIn("NewUsers", map)
-		self.assertIn("IsaacN", map["InitialUsers"])
+		self.assertIn("IsaacN", map["NewUsers"])
 		self.assertIn("AlbertE", map["InitialUsers"])
 if __name__ == "__main__":
 	unittest.main()
