@@ -29,7 +29,7 @@ deploy-prod:
     - ssh-add <(echo "$SSH_PRIVATE_KEY_VM_CLOUD")
     - ssh-add <(echo "$SSH_PRIVATE_KEY_GIT_VMCLOUD")
     - mkdir -p ~/.ssh/
-    - echo -e "Host $VM_CLOUD_IP \n\tFowardAgent yes" > ~/.ssh/config
+    - echo -e "Host $VM_CLOUD_IP \n\tForwardAgent yes" > ~/.ssh/config
     - more ~/.ssh/config
     - ssh -o StrictHostKeyChecking=no $VM_CLOUD_USERNAME@$VM_CLOUD_IP "cd ~/infrah2022tp5gbzg/ && git fetch origin master && git reset --hard origin/master && exit"
   only:
